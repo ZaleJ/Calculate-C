@@ -58,4 +58,5 @@ main(){
     for(i=0; i<l.length; i++)
         printf("%d ", l.elem[i]);
     getche();
+    return;
 }
