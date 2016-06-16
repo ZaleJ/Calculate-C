@@ -19,7 +19,7 @@ LinkList GreatLinkList(int n){
         if(!list)
             list=p;
         else
-            r->next = NULL;
+            r->next = p;
         r=p;
     }
     return list;
@@ -53,7 +53,16 @@ void delLink(LinkList *list, LinkList q){
     }
 }
 
-
+void destoryLinkList(LinkList *list){
+    LinkList p, q;
+    p=*list;
+    while(p){
+        q=p->next;
+        free(p);
+        p=q;
+    }
+    *list=NULL;
+}
 
 main(){
     int e, i;
@@ -85,6 +94,8 @@ main(){
     q=l;
     while(q){
         printf("%d ", q->data);
+        q=q->next;
     }
-
+    destoryLinkList(&l);
+    getche();
 }
