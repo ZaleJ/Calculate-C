@@ -38,6 +38,23 @@ void insertList(LinkList *list, LinkList q, ElemType e){
     }
 }
 
+void delLink(LinkList *list, LinkList q){
+    LinkList r;
+    if(q==*list){
+        *list=q->next;
+        free(q);
+    }
+    else{
+        for(r=*list; r->next != q; r=r->next);
+        if(r->next != NULL){
+            r->next = q->next;
+            free(q);
+        }
+    }
+}
+
+
+
 main(){
     int e, i;
     LinkList l, q;
@@ -56,4 +73,18 @@ main(){
     }
     q=l;
     printf("\nDelete the fifth element.\n");
+    for(i=0; i<4; i++){
+        if(q == NULL){
+            printf("The length of the linklist is smaller than 5!");
+            getche();
+            return;
+        }
+        q=q->next;
+    }
+    delLink(&l, q);
+    q=l;
+    while(q){
+        printf("%d ", q->data);
+    }
+
 }
